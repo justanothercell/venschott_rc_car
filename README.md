@@ -6,13 +6,13 @@ Started by 10th graders (year '21-'22), software by me
 - [Android (Processing) remote control app](./AndroidApp)
 - [Old Arduino Source Code](./OldArduinoCode)
 
-### Protocol
+### Bluetooth Protocol
 
 send: `<id>;<value>\n`
 
 | command        | id  | value range |
 |----------------|-----|-------------|
-| steering angle | 0   |             |
+| steering angle | 0   | -90 - 90    |
 | speed          | 1   |             |
 | blinker lights | 2   | 0 &#124 1   |
 | horn           | 3   | 0           |

@@ -4,6 +4,9 @@ namespace driving {
 
     Servo steering;
 
+    int current_angle = 0;
+    int desired_angle = 0;
+
     void setup(){
         pinMode(MOTOR, OUTPUT);
         pinMode(STEERING_SERVO, OUTPUT);
@@ -11,14 +14,20 @@ namespace driving {
     }
 
     void loop(){
-
+        if(desired_angle > current_angle) {
+            current_angle --;
+            steering.write(current_angle);
+        }
+        if(desired_angle < current_angle) {
+            current_angle ++;
+            steering.write(current_angle);
+        }
     }
 
     void bt_steering(int value) {
-
+        desired_angle = value;
     }
 
     void bt_speed(int value) {
-
     }
 }

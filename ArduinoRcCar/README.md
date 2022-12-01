@@ -13,7 +13,7 @@ This is the arduino side of the project, which runs on the rc car.
 | 8     | INPUT   | echo front           |
 | 9     | OUTPUT  | steering servo       |
 | 10    | OUTPUT  | \<unknown>           |
-| 11    | OUTPUT  | \<unknown>           |
+| 11    | OUTPUT  | echo beeper          |
 | 12    | OUTPUT  | \<unknown>           |
 | 13+14 | ?       | bluetooth            |
 | 15-31 | OUTPUT  | \<unknown>           |
