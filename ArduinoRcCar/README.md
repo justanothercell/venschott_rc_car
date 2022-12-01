@@ -17,6 +17,6 @@ This is the arduino side of the project, which runs on the rc car.
 | 12      | OUTPUT  | \<unknown>                 |
 | 13+14   | ?       | bluetooth                  |
 | 15-31   | OUTPUT  | \<unknown>                 |
-| 32-35   | OUTPUT  | left or right lights       |
-| 36-39   | OUTPUT  | right or left lights       |
-| A0 (54) | INPUT   | water detector for sweeper | 
+| 32-35   | OUTPUT  | left lights                |
+| 36-39   | OUTPUT  | right lights               |
+| A0 (54) | INPUT   | water detector for sweeper |
