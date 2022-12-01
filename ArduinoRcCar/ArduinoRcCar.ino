@@ -9,7 +9,7 @@
 
 using namespace echo;
 using namespace lights;
-using namespace steering;
+using namespace driving;
 using namespace swipers;
 
 SoftwareSerial BT(13, 14);
@@ -44,10 +44,10 @@ void loop(){
                 driving::bt_speed(value);
                 break;
             case 2: // blinker lights on/off
-                lights::bt_set(value);
+                lights::bt_blink(value);
                 break;
             case 3: // horn
-                horn::bt_trigger(value);
+                horn::bt_honk(value);
                 break;
         }
     }

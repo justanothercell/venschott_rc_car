@@ -7,7 +7,7 @@ namespace horn {
 
     }
 
-    void bt_trigger(int value) {
+    void bt_honk(int value) {
 
     }
 }

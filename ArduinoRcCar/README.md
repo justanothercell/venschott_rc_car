@@ -5,7 +5,7 @@ This is the arduino side of the project, which runs on the rc car.
 
 | pin   | pinMode | description          |
 |-------|---------|----------------------|
-| 2     | OUTPUT  | \<unknown>           |
+| 2     | OUTPUT  | motor?               |
 | 3     | OUTPUT  | swiper servo         |
 | 5     | OUTPUT  | echo trigger back    |
 | 6     | INPUT   | echo back            |

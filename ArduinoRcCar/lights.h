@@ -7,7 +7,7 @@ namespace lights {
 
     }
 
-    void bt_set(int value) {
+    void bt_blink(int value) {
 
     }
 }
