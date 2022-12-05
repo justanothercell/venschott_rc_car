@@ -4,8 +4,6 @@ namespace echo {
     const int ECHO_FRONT_TRIGGER = 7;
     const int ECHO_FRONT_RECEIVER = 8;
 
-    const int BEEP_PIN = 11;
-
     unsigned long next_echo = 0;
     const unsigned long ECHO_INTERVAL = 500;
 
@@ -14,8 +12,6 @@ namespace echo {
         pinMode(ECHO_BACK_RECEIVER, INPUT);
         pinMode(ECHO_FRONT_TRIGGER, OUTPUT);
         pinMode(ECHO_FRONT_RECEIVER, INPUT);
-
-        pinMode(BEEP_PIN, OUTPUT);
     }
 
     void loop(){

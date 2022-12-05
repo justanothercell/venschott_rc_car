@@ -11,11 +11,11 @@ namespace lights {
 
     void loop() {
         for(int i = 0;i <= 4;i++){    
-            if(blink_left && (millis() / BLINK_INTERVAL) % 4 == i) digitalWrite(i + 32, HIGH);
+            if(blink_left && (millis() / BLINK_INTERVAL) % 4 <= i) digitalWrite(i + 32, HIGH);
             else digitalWrite(i + 32, LOW);
         }
         for(int i = 0;i <= 4;i++){    
-            if(blink_left && (millis() / BLINK_INTERVAL) % 4 == i) digitalWrite(i + 36, HIGH);
+            if(blink_right && (millis() / BLINK_INTERVAL) % 4 <= i) digitalWrite(i + 36, HIGH);
             else digitalWrite(i + 36, LOW);
         }
     }
