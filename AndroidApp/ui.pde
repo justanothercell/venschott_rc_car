@@ -64,6 +64,31 @@ int button(String text, float x, float y, float w, float h){
   return BUTTON_UP;
 }
 
+boolean buttonToggle(String text, boolean enabled, PVector pos, PVector size){
+  return buttonToggle(text, enabled, pos.x, pos.y, size.x, size.y);
+}
+
+boolean buttonToggle(String text, boolean enabled, float x, float y, float w, float h){
+  textAlign(CENTER,CENTER);
+  currentElement++;
+  if(selectedElement==0 && mousePressed && mouseX > x && mouseX < x+w && mouseY > y && mouseY < y+h){
+    selectedElement = currentElement;
+    enabled = !enabled;
+  }
+  if(enabled){
+    fill(colorButtonPressed);
+    rect(x, y, w, h);
+    fill(colorTextButton);
+    text(text, x+w/2, y+h/2);
+    return true;
+  }
+  fill(colorButtonNormal);
+  rect(x, y, w, h);
+  fill(colorTextButton);
+  text(text, x+w/2, y+h/2);
+  return false;
+}
+
 float sliderH(float value, PVector pos, PVector size){
   return sliderH(value, pos.x, pos.y, size.x, size.y);
 }

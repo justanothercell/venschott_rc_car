@@ -11,6 +11,7 @@ using namespace echo;
 using namespace lights;
 using namespace driving;
 using namespace swipers;
+using namespace horn;
 
 SoftwareSerial BT(13, 14);
 
