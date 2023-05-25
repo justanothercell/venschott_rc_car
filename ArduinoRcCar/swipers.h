@@ -1,3 +1,5 @@
+#pragma once
+
 namespace swipers {
     const int SWIPER_SERVO = 3;
     const int MOISTURE_SENSOR = A0; // 54

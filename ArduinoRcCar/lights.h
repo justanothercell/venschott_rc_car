@@ -1,3 +1,5 @@
+#pragma once
+
 namespace lights {
     const int BLINK_INTERVAL = 250;
     bool blink_left = false;

@@ -1,3 +1,5 @@
+#pragma once
+
 namespace echo {
     const int ECHO_BACK_TRIGGER = 5;
     const int ECHO_BACK_RECEIVER = 6;

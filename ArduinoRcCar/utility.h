@@ -1,3 +1,5 @@
+#pragma once
+
 /*
 int timeIt(int pin, int trigger, int timeout)
 

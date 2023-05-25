@@ -1,3 +1,5 @@
+#pragma once
+
 namespace horn {
     const int BEEP_PIN = 11;
 

@@ -1,3 +1,5 @@
+#pragma once
+
 namespace driving {
     const int MOTOR = 2;
     const int STEERING_SERVO = 3;
