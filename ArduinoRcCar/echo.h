@@ -33,16 +33,16 @@ namespace echo {
               // too far away or invalid: do nothing
             }
             else if (distance > 20) {
-                tone(horn::BEEP_PIN, 500, 100);
+                tone(horn::BEEP_PIN, 660, 100);
             }
             else if (distance > 12) {
-                tone(horn::BEEP_PIN, 400, 100);
+                tone(horn::BEEP_PIN, 600, 100);
             }
             else if (distance > 6) {
-                tone(horn::BEEP_PIN, 300, 100);
+                tone(horn::BEEP_PIN, 550, 100);
             }
             else {
-                tone(horn::BEEP_PIN, 200, 100);
+                tone(horn::BEEP_PIN, 500, 100);
             }
         }
     }
