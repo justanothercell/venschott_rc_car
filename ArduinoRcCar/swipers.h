@@ -3,7 +3,7 @@
 namespace swipers {
     const int SWIPER_SERVO = 3;
     const int MOISTURE_SENSOR = A0; // 54
-    const int THRESHOLD = 400; // threshold needed for the sweepers to activate
+    const int THRESHOLD = 400;
 
     Servo swiper;
 
