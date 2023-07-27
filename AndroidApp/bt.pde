@@ -1,4 +1,5 @@
 int selection = -1;
+String connectedDevice = null;
 
 void configureBT(){
   textAlign(LEFT, BASELINE);
@@ -35,14 +36,15 @@ void configureBT(){
     fill(0);
     text("Connect", 350, height-80);
     if(mouseX > 100 && mouseX < width - 200 && mouseY > height - 180 && mouseY < height - 50 && (selection >= 0 && selection < names.size())){
-      for(String name:bt.getConnectedDeviceNames()){
+      for(String name : bt.getConnectedDeviceNames()){
         println("disconnected from:  " + name);
         bt.disconnectDevice(name);
       }
       bt.connectToDeviceByName(names.get(selection));
+      connectedDevice = names.get(selection);
       println("connect to: " + names.get(selection));
       println("connected:");
-      for(String name:bt.getConnectedDeviceNames()){
+      for(String name : bt.getConnectedDeviceNames()){
         println("  " + name);
       }
       println("end");
@@ -58,8 +60,7 @@ void configureBT(){
   textSize(u*72);
 }
 
-String getBluetoothInformation()
-{
+String getBluetoothInformation(){
   String btInfo = "Server Running: ";
   btInfo += bt.isStarted() + "\n";
   btInfo += "Discovering: " + bt.isDiscovering() + "\n";
@@ -83,7 +84,7 @@ ArrayList<String> devicesDiscovered = new ArrayList();
 boolean isConfiguring = true;
 
 //********************************************************************
-// The following code is required to enable bluetooth at startup.
+// The following code is required to enable bluetooth on startup.
 //********************************************************************
 void onCreate(Bundle savedInstanceState) {
   super.onCreate(savedInstanceState);
@@ -106,5 +107,6 @@ void onBluetoothDataEvent(String who, byte[] data)
 }
 
 void sendData(int channel, int code){
+  println("Sending: "+channel+";"+code);
   bt.broadcast((channel+";"+code+"\n").getBytes());
 }

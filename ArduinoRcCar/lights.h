@@ -1,7 +1,7 @@
 #pragma once
 
 namespace lights {
-    const int BLINK_INTERVAL = 250;
+    const int BLINK_INTERVAL = 100;
     bool blink_left = false;
     bool blink_right = false;
     bool back_lights = false;
@@ -17,34 +17,35 @@ namespace lights {
     }
 
     void loop() {
-        for(int i = 0;i <= 4;i++){    
-            if(blink_left && (millis() / BLINK_INTERVAL) % 5 > i) digitalWrite(i + 32, HIGH);
-            else digitalWrite(i + 32, LOW);
+        for(int i = 0; i < 8; i += 2){    
+            if(blink_right && (millis() / BLINK_INTERVAL) % 8 > i) digitalWrite(38 - i, HIGH);
+            else digitalWrite(38 - i, LOW);
         }
-        for(int i = 0;i <= 4;i++){    
-            if(blink_right && (millis() / BLINK_INTERVAL) % 5 > i) digitalWrite(i + 36, HIGH);
-            else digitalWrite(i + 36, LOW);
+        for(int i = 0; i < 8; i += 2){    
+            if(blink_left && (millis() / BLINK_INTERVAL) % 8 > i) digitalWrite(39 - i, HIGH);
+            else digitalWrite(39 - i, LOW);
         }
         if(back_lights){
-            digitalWrite(16,HIGH);
+            digitalWrite(16, HIGH);
         } else {
-            digitalWrite(16,LOW);  
+            digitalWrite(16, LOW);  
         }
         if (brake_lights) { 
             for(int i = 17; i <= 19; i++){
-                digitalWrite(i,HIGH);}
+                digitalWrite(i, HIGH);
             }
+        }
         else {
             for(int i = 17; i <= 19; i++) {
-                digitalWrite(i,LOW);
+                digitalWrite(i, LOW);
             }
         }
     }
 
     void bt_blink(int value) {
-        blink_right  = value & 0b0001;
-        blink_left   = value & 0b0010;
-        back_lights  = value & 0b0100;
-        brake_lights = value & 0b1000;
+        blink_right  = (value & 0b0001) != 0;
+        blink_left   = (value & 0b0010) != 0;
+        back_lights  = (value & 0b0100) != 0;
+        brake_lights = (value & 0b1000) != 0;
     }
 }

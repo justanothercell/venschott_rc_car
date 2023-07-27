@@ -28,14 +28,19 @@ void setup(){
 
 void loop(){
     String raw_data = String();
-    while(BT.available()) { 
-        char c = BT.read();
-        if(c == '\n') break;
-        raw_data += c;
+    if(BT.available()){
+        while(true) { 
+            while(!BT.available()) { }
+            char c = BT.read();
+            if(c == '\n') break;
+            raw_data += c;
+        }
     }
+    
     if(raw_data.length() > 0){
+        Serial.println(raw_data);
         int split = raw_data.indexOf(';');
-        int command = raw_data.substring(0, split - 1).toInt();
+        int command = raw_data.substring(0, split).toInt();
         int value = raw_data.substring(split + 1).toInt();
         switch(command){
             case 0: // steering angle

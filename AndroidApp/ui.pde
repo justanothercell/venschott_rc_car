@@ -54,7 +54,10 @@ int button(String text, float x, float y, float w, float h){
     rect(x, y, w, h);
     fill(colorTextButton);
     text(text, x+w/2, y+h/2);
-    if(!mousePressed) return BUTTON_CLICK;
+    if(!mousePressed) {
+      if(mouseX > x && mouseX < x+w && mouseY > y && mouseY < y+h) return BUTTON_CLICK;
+      else return BUTTON_UP;
+    }
     return BUTTON_DOWN;
   }
   fill(colorButtonNormal);

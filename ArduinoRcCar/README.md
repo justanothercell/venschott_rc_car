@@ -13,11 +13,14 @@ This is the arduino side of the project, which runs on the rc car.
 | 7       | OUTPUT  | echo trigger front         |
 | 8       | INPUT   | echo front                 |
 | 9       | OUTPUT  | steering servo             |
-| 10      | OUTPUT  | \<unknown>                 |
-| 11      | OUTPUT  | horn/beeper                |
-| 12      | OUTPUT  | \<unknown>                 |
-| 13+14   | ?       | bluetooth                  |
+| 11      | OUTPUT  | beeper                     |
+| 12      | OUTPUT  | horn                       |
+| 13      | ?       | bluetooth TXD data out     |
+| 14      | INPUT   | bluetooth RXD Rdata in     |
 | 16      | OUTPUT  | back lights                |
-| 32-35   | OUTPUT  | left lights                |
-| 36-39   | OUTPUT  | right lights               |
-| A0 (54) | INPUT   | water detector for sweeper |
+| 17      | OUTPUT  | BRAKE LIGHTS LEFT          |
+| 18      | OUTPUT  | BRAKE LIGHTS RIGHT         |
+| 19      | OUTPUT  | BRAKE LIGHTS BACK          |
+| 30      | ?       | motor driver               |
+| 32-39   | OUTPUT  | blinker, %2->left/right    |
+| A2 (56) | INPUT   | water detector for sweeper |
