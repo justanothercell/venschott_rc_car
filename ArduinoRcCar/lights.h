@@ -1,6 +1,8 @@
 #pragma once
 
 namespace lights {
+    #include "driving.h"
+
     const int BLINK_INTERVAL = 100;
     bool blink_left = false;
     bool blink_right = false;
@@ -30,7 +32,7 @@ namespace lights {
         } else {
             digitalWrite(16, LOW);  
         }
-        if (brake_lights) { 
+        if (brake_lights || driving::emergency_brakes) { 
             for(int i = 17; i <= 19; i++){
                 digitalWrite(i, HIGH);
             }
@@ -47,5 +49,6 @@ namespace lights {
         blink_left   = (value & 0b0010) != 0;
         back_lights  = (value & 0b0100) != 0;
         brake_lights = (value & 0b1000) != 0;
+        if(brake_lights) driving::speed = 0;
     }
 }

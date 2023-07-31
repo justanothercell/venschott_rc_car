@@ -5,10 +5,10 @@ namespace echo {
     #include "driving.h"
     #include "utility.h"
 
-    const int ECHO_FRONT_TRIGGER = 7;
-    const int ECHO_FRONT_RECEIVER = 8;
-    const int ECHO_BACK_TRIGGER = 5;
-    const int ECHO_BACK_RECEIVER = 6;
+    const int ECHO_FRONT_TRIGGER = 5;
+    const int ECHO_FRONT_RECEIVER = 6;
+    const int ECHO_BACK_TRIGGER = 7;
+    const int ECHO_BACK_RECEIVER = 8;
 
     const unsigned long ECHO_INTERVAL = 200;
 
@@ -28,14 +28,16 @@ namespace echo {
         if(driving::speed == 0) return;
         if(millis() > next_beep && distance > 0) {
             next_beep = millis() + (distance + 5) * 15;
-            tone(horn::BEEP_PIN, 900, 75);
+            tone(horn::BEEP_PIN, 800, 75);
         }
         if(millis() > next_echo) {
+            Serial.print(driving::speed);
+            Serial.print(" ");
+            Serial.println(driving::forward);
             next_echo = millis() + ECHO_INTERVAL;
 
             int duration = 0;
-            // trigger the echo
-            // TODO: add if/else to trigger front/back depending on driving direction
+
             if(driving::forward) {
                 digitalWrite(ECHO_FRONT_TRIGGER, HIGH);
                 delayMicroseconds(10);
@@ -49,8 +51,9 @@ namespace echo {
             }
 
             distance = (duration / 2.0) / 29.1; // caluclate distance using speed of sound
+            Serial.println(distance);
             if(distance > 40) distance = 0;
-            driving::emergency_brakes = distance < 5;
+            driving::emergency_brakes = distance < 7 && distance > 0;
         }
     }
 }

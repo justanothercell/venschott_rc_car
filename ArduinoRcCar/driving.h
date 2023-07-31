@@ -10,7 +10,6 @@ namespace driving {
 
     const int STEERING_SERVO = 9;
     const int STEERING_FWD_OFFSET = 90;
-    const int STEERING_RANGE = 180;
 
     Servo steering;
 
@@ -22,7 +21,6 @@ namespace driving {
     bool emergency_brakes = false;
 
     void setup(){
-        pinMode(STEERING_SERVO, OUTPUT);
         steering.attach(STEERING_SERVO);
 
         pinMode(MOTOR_1_SPEED, OUTPUT);
@@ -35,20 +33,31 @@ namespace driving {
 
     void loop(){
         if(desired_angle > current_angle) {
-            current_angle --;
-            // 1024 is arbtrary range for transmission
-            steering.write(current_angle * STEERING_RANGE / 1024 + STEERING_FWD_OFFSET);
+            current_angle += 1;
         }
         if(desired_angle < current_angle) {
-            current_angle ++;
-            // 1024 is arbtrary range for transmission
-            steering.write(current_angle * STEERING_RANGE / 1024 + STEERING_FWD_OFFSET);
+            current_angle -= 1;
         }
-
-        if(emergency_brakes) {
+        steering.write(current_angle);
+        if(emergency_brakes || speed == 0) {
+            digitalWrite(MOTOR_1_FWD, LOW);
+            digitalWrite(MOTOR_2_FWD, LOW);
+            digitalWrite(MOTOR_1_BCK, LOW);
+            digitalWrite(MOTOR_2_BCK, LOW);
             analogWrite(MOTOR_1_SPEED, 0);
             analogWrite(MOTOR_2_SPEED, 0);
         } else {
+            if(forward){
+                digitalWrite(MOTOR_1_FWD, HIGH);
+                digitalWrite(MOTOR_2_FWD, HIGH);
+                digitalWrite(MOTOR_1_BCK, LOW);
+                digitalWrite(MOTOR_2_BCK, LOW);
+            } else {
+                digitalWrite(MOTOR_1_FWD, LOW);
+                digitalWrite(MOTOR_2_FWD, LOW);
+                digitalWrite(MOTOR_1_BCK, HIGH);
+                digitalWrite(MOTOR_2_BCK, HIGH);
+            }
             analogWrite(MOTOR_1_SPEED, speed);
             analogWrite(MOTOR_2_SPEED, speed);
         }
@@ -62,17 +71,9 @@ namespace driving {
         if(value >= 0) {
             speed = value;
             forward = false;
-            digitalWrite(MOTOR_1_FWD, HIGH);
-            digitalWrite(MOTOR_2_FWD, HIGH);
-            digitalWrite(MOTOR_1_BCK, LOW);
-            digitalWrite(MOTOR_2_BCK, LOW);
         } else {
             speed = -value;
             forward = true;
-            digitalWrite(MOTOR_1_FWD, LOW);
-            digitalWrite(MOTOR_2_FWD, LOW);
-            digitalWrite(MOTOR_1_BCK, HIGH);
-            digitalWrite(MOTOR_2_BCK, HIGH);
         }
     }
 }

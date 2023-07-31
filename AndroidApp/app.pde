@@ -43,13 +43,13 @@ void runMain(){
     sendData(2, lightMaskMaskNew);
   }
   // 1024 is arbtrary range for transmission
-  int pSteering = int(steering * 1024);
+  int pSteering = int(steering * 150 + 15);
   int cp = colorButtonPressed;
   if(steering==0.5) colorButtonPressed = colorButtonNormal;
   steering = sliderH(steering, u(200), u(50),  u(600), u(100));
   colorButtonPressed = cp;
   if(abs(steering-0.5) < 0.075) steering = 0.5;
-  int newSteering = int(steering * 1024);
+  int newSteering = int(steering * 150 + 15);
   if(pSteering != newSteering) sendData(0, newSteering);
   // analogWrite is 0-255
   int pSpeed = int(speed * 512) - 256;
